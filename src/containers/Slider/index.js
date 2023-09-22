@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useData } from "../../contexts/DataContext";
 import { getMonth } from "../../helpers/Date";
-
 import "./style.scss";
 
 const Slider = () => {
@@ -10,12 +9,12 @@ const Slider = () => {
   const byDateDesc = data?.focus.sort(
     (evtA, evtB) => (new Date(evtB.date) < new Date(evtA.date) ? -1 : 1) // inversee les evtA et evtB
   );
-
+  /* setIndex((index + 1) % byDateDesc.length) */
   const nextCard = () => {
     setTimeout(
-      () => setIndex(index < byDateDesc.length - 1 ? index + 1 : 0),
+      () => setIndex(index < 2 ? index + 1 : byDateDesc.length - 3),
       2500
-    ); // Ajout du -1 pour s'arreter a 2
+    ); //
   };
   useEffect(() => {
     nextCard();
