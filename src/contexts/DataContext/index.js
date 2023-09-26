@@ -19,6 +19,7 @@ export const api = {
 export const DataProvider = ({ children }) => {
   const [error, setError] = useState(null);
   const [data, setData] = useState(null);
+  const [last, setLast] = useState(null); // ajout du useState last
   const getData = useCallback(async () => {
     try {
       setData(await api.loadData());
@@ -30,13 +31,25 @@ export const DataProvider = ({ children }) => {
     if (data) return;
     getData();
   });
-  
+
+  // ajout du useEffect avec logique du slider
+  useEffect(() => {
+    const byDateDesc = data?.events.sort((evtA, evtB) =>
+      new Date(evtA.date) > new Date(evtB.date) ? -1 : 1
+    );
+    if (byDateDesc) {
+      setLast(byDateDesc[0]);
+    }
+  }, [data]);
+
   return (
     <DataContext.Provider
       // eslint-disable-next-line react/jsx-no-constructed-context-values
       value={{
         data,
         error,
+        // ajout de last
+        last,
       }}
     >
       {children}
@@ -46,7 +59,7 @@ export const DataProvider = ({ children }) => {
 
 DataProvider.propTypes = {
   children: PropTypes.node.isRequired,
-}
+};
 
 export const useData = () => useContext(DataContext);
 
