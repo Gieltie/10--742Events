@@ -4,6 +4,7 @@ import Logo from "../../components/Logo";
 
 import "./style.scss";
 
+console.log((window.document.location.hash = "#conta"));
 const Menu = () => (
   <nav>
     <Logo />
@@ -18,7 +19,10 @@ const Menu = () => (
         <a href="#notre-equipe">Notre équipe</a>
       </li>
     </ul>
-    <Button title="contact" onClick={() => (window.document.location.hash = "#contact")}>
+    <Button
+      title="contact"
+      onClick={() => (window.document.location.hash = "#contact")}
+    >
       Contact
     </Button>
   </nav>
