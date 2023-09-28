@@ -7,7 +7,7 @@ const Slider = () => {
   const { data } = useData();
   const [index, setIndex] = useState(0);
   const byDateDesc = data?.focus.sort(
-    (evtA, evtB) => (new Date(evtA.date) > new Date(evtB.date) ? -1 : 1) // inversee les evtA et evtB
+    (evtA, evtB) => (new Date(evtA.date) > new Date(evtB.date) ? -1 : 1) // changee < pour > pour changer la date decroissant
   );
   /* setIndex((index + 1) % byDateDesc.length) */
   const nextCard = () => {
@@ -49,7 +49,8 @@ const Slider = () => {
               key={event.date}
               type="radio"
               name="radio-button"
-              checked={index === radioIdx} // change idx pour index
+              checked={index === radioIdx} // change idx pour index et ajout readOnly
+              readOnly
             />
           ))}
         </div>
