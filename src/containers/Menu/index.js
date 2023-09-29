@@ -4,7 +4,6 @@ import Logo from "../../components/Logo";
 
 import "./style.scss";
 
-console.log((window.document.location.hash = "#conta"));
 const Menu = () => (
   <nav>
     <Logo />
