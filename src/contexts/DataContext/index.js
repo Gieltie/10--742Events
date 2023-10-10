@@ -31,7 +31,6 @@ export const DataProvider = ({ children }) => {
     if (data) return;
     getData();
   });
-
   /*  // ajout du useEffect avec logique du slider
   useEffect(() => {
     const byDateDesc = data?.events.sort((evtA, evtB) =>
@@ -41,7 +40,6 @@ export const DataProvider = ({ children }) => {
       setLast(byDateDesc[0]);
     }
   }, [data]); */
-
   return (
     <DataContext.Provider
       // eslint-disable-next-line react/jsx-no-constructed-context-values
@@ -49,7 +47,11 @@ export const DataProvider = ({ children }) => {
         data,
         error,
         // ajout de last
-        last: data && data.events ? data.events[data.events.length - 1] : null,
+        last:
+          data &&
+          data.events?.sort((evtA, evtB) =>
+            new Date(evtA.date) > new Date(evtB.date) ? -1 : 1
+          )[0],
       }}
     >
       {children}
