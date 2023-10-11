@@ -50,7 +50,7 @@ export const DataProvider = ({ children }) => {
         last:
           data &&
           data.events?.sort((evtA, evtB) =>
-            new Date(evtA.date) > new Date(evtB.date) ? -1 : 1
+            new Date(evtA.date) > new Date(evtB.date) ? -1 : null
           )[0],
       }}
     >
